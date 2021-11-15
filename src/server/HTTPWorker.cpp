@@ -139,9 +139,7 @@ Response_Status GETResponse(const vector<string>& components, int fd) {
     if (sendFile(components[1], fd) == -1) {
         // in case of the file doesn't exist.
         if (sendAll(getResponseMessage(NOT_FOUND_COD, -1), fd) == -1) return ERROR;
-        if (sendFile("./public/404.html", fd) == -1) {
-            return ERROR;
-        }
+        return SEND;
     }
     return SEND; 
 }
